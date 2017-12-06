@@ -1,6 +1,6 @@
 bluez
-libqt5gui5
-qt4-x11
+-f libqt5gui5
+-f qt4-x11
 cmake
 libasound2-dev
 libavcodec-dev
@@ -12,7 +12,7 @@ libdc1394-22
 libdc1394-22-dev
 libfontconfig1-dev
 libfreetype6-dev
-libglib2.0-dev
+libglib2.0-dev -t buster
 libgstreamer-plugins-base0.10-dev
 libgstreamer0.10-dev
 libgtk-3-dev
@@ -44,7 +44,7 @@ libxcb-xinerama0-dev
 libxine2-dev
 libxkbcommon-dev
 libxvidcore-dev
-openssl
+openssl=1.0.2 -t jessi-backports
 pkg-config
 pulseaudio
 python-dev
