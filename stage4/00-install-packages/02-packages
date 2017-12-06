@@ -24,9 +24,10 @@ libmp3lame-dev
 libopencore-amrnb-dev
 libopencore-amrwb-dev
 libopencv-dev
-libopenexre-dev
+libopenexr-dev
 libpulse-dev
 libqt4-dev
+libqt5gui5
 libsqlite3-dev
 libssl-dev
 libswscale-dev
