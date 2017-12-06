@@ -15,5 +15,3 @@ on_chroot << EOF
 apt-get update
 apt-get dist-upgrade -y
 EOF
-
-on_chroot locale-gen en_US.UTF-8
