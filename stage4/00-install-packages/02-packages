@@ -44,7 +44,8 @@ libxcb-xinerama0-dev
 libxine2-dev
 libxkbcommon-dev
 libxvidcore-dev
-openssl=1.0.2 -t jessi-backports
+openssl
+#openssl=1.0.2 -t jessi-backports
 pkg-config
 pulseaudio
 python-dev
