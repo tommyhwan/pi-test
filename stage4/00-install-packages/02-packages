@@ -1,6 +1,6 @@
 bluez
 -f libqt5gui5
--f qt4-x11
+# -f qt4-x11
 cmake
 libasound2-dev
 libavcodec-dev
