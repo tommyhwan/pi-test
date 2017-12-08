@@ -23,7 +23,7 @@ libjpeg-dev
 libmp3lame-dev
 libopencore-amrnb-dev
 libopencore-amrwb-dev
-libopencv-dev
+# libopencv-dev
 libopenexr-dev
 libpulse-dev
 libqt4-dev
