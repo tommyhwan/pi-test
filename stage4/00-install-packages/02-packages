@@ -1,5 +1,5 @@
 bluez
--f libqt5gui5
+# -f libqt5gui5
 # -f qt4-x11
 cmake
 libasound2-dev
@@ -27,7 +27,7 @@ libopencore-amrwb-dev
 libopenexr-dev
 libpulse-dev
 libqt4-dev
-libqt5gui5
+# libqt5gui5
 libsqlite3-dev
 libssl-dev
 libswscale-dev
@@ -44,7 +44,7 @@ libxcb-xinerama0-dev
 libxine2-dev
 libxkbcommon-dev
 libxvidcore-dev
-openssl
+#openssl
 #openssl=1.0.2 -t jessi-backports
 pkg-config
 pulseaudio
