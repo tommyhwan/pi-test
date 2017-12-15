@@ -1,7 +1,6 @@
 bluez
-# -f libqt5gui5
-# -f qt4-x11
 cmake
+dirmngr
 libasound2-dev
 libavcodec-dev
 libavformat-dev
@@ -12,7 +11,6 @@ libdc1394-22
 libdc1394-22-dev
 libfontconfig1-dev
 libfreetype6-dev
-# libglib2.0-dev -t buster
 libgstreamer-plugins-base0.10-dev
 libgstreamer0.10-dev
 libgtk-3-dev
@@ -23,11 +21,8 @@ libjpeg-dev
 libmp3lame-dev
 libopencore-amrnb-dev
 libopencore-amrwb-dev
-# libopencv-dev
-libopenexr-dev
 libpulse-dev
 libqt4-dev
-# libqt5gui5
 libsqlite3-dev
 libssl-dev
 libswscale-dev
@@ -44,8 +39,6 @@ libxcb-xinerama0-dev
 libxine2-dev
 libxkbcommon-dev
 libxvidcore-dev
-#openssl
-#openssl=1.0.2 -t jessi-backports
 pkg-config
 pulseaudio
 python-dev
@@ -53,3 +46,4 @@ python-numpy
 tslib
 v4l-utils
 x264
+clang-3.9
