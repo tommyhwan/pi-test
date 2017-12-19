@@ -22,9 +22,19 @@ EOF
 
 on_chroot << EOF
 cat /etc/apt/sources.list > sources.orig
+echo 'deb-src http://archive.raspbian.org/raspbian/ stretch main contrib non-free rpi' >> /etc/apt/sources.list
+apt-get update
+apt-get build-dep -y libqt5gui5 qt4-x11
+cat sources.orig > /etc/apt/sources.list
+apt-get update
+EOF
+
+on_chroot << EOF
+cat /etc/apt/sources.list > sources.orig
 echo 'deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi'  >> /etc/apt/sources.list
 apt-get update
 apt-get install -y libopenexr-dev -t jessie
 cat sources.orig > /etc/apt/sources.list
 apt-get update
+rm sources.orig
 EOF

@@ -4,14 +4,39 @@ IMG_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.img"
 INFO_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.info"
 SYSROOT_DIR="${STAGE_WORK_DIR}/sysroot"
 
-mkdir -p ${SYSROOT_DIR}/usr/{include,local/lib,lib/arm-linux-gnueabihf}
+# on_chroot unlink ${ROOTFS_DIR}/usr/bin/X11/X11
+mkdir -p ${SYSROOT_DIR}
+on_chroot << EOF
+# rsync -rzLR --safe-links --exclude '${ROOTFS_DIR}/usr/bin/X11/X11' \
+# ${ROOTFS_DIR}/etc \
+# ${ROOTFS_DIR}/usr/lib \
+# ${ROOTFS_DIR}/usr/include \
+# ${ROOTFS_DIR}/usr/bin \
+# ${ROOTFS_DIR}/usr/local/lib \
+# ${ROOTFS_DIR}/opt/vc \
+# # ${ROOTFS_DIR}/etc \
+# ${ROOTFS_DIR}/bin \
+# ${ROOTFS_DIR}/lib \
+# ${SYSROOT_DIR}/
+
+
+mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf}
 mkdir -p ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
 mkdir -p ${SYSROOT_DIR}/opt/vc/lib
-cp -r ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
-cp -r	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
-cp -r	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
-cp -r	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
-cp -r	${ROOTFS_DIR}/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
+mkdir -p ${SYSROOT_DIR}/{etc,bin}
+
+cp -aR  ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
+cp -aR	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
+cp -aR	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
+cp -a 	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
+cp -a 	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
+cp -aR	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
+cp -aR	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
+cp -aR	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
+cp -aR	${ROOTFS_DIR}/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
+# cp -aR	${ROOTFS_DIR}/lib/* ${SYSROOT_DIR}/lib
+EOF
+
 
 on_chroot << EOF
 /etc/init.d/fake-hwclock stop
