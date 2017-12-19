@@ -4,21 +4,21 @@ IMG_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.img"
 INFO_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.info"
 SYSROOT_DIR="${STAGE_WORK_DIR}/sysroot"
 
-# mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf}
-# mkdir -p ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
-# mkdir -p ${SYSROOT_DIR}/opt/vc/lib
-# mkdir -p ${SYSROOT_DIR}/{etc,bin}
-#
-# cp -r  ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
-# cp -r	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
-# cp -r	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
-# cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
-# cp  	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
-# cp -r	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
-# cp -r	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
-# cp -r	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
+mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf}
+mkdir -p ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
+mkdir -p ${SYSROOT_DIR}/opt/vc/lib
+mkdir -p ${SYSROOT_DIR}/{etc,bin}
+
+cp -r ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
+cp -r	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
+cp -r	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
+cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
+cp  	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
+cp -r	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
+cp -r	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
+cp -r	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
 # cp -r	${ROOTFS_DIR}/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
-# # cp -r	${ROOTFS_DIR}/lib/* ${SYSROOT_DIR}/lib
+cp -r	${ROOTFS_DIR}/lib/* ${SYSROOT_DIR}/lib
 
 on_chroot << EOF
 /etc/init.d/fake-hwclock stop
@@ -96,7 +96,7 @@ rm -f ${DEPLOY_DIR}/image_${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.zip
 
 pushd ${STAGE_WORK_DIR} > /dev/null
 zip ${DEPLOY_DIR}/image_${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.zip $(basename ${IMG_FILE})
-# zip -r ${DEPLOY_DIR}/sysroot.zip $(basename ${SYSROOT_DIR})
+zip -r ${DEPLOY_DIR}/sysroot.zip $(basename ${SYSROOT_DIR})
 popd > /dev/null
 
 cp "$INFO_FILE" "$DEPLOY_DIR"
