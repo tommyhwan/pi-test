@@ -4,14 +4,21 @@ IMG_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.img"
 INFO_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.info"
 SYSROOT_DIR="${STAGE_WORK_DIR}/sysroot"
 
-# on_chroot unlink ${ROOTFS_DIR}/usr/bin/X11/X11
-# on_chroot << EOF
-# mkdir -p ${SYSROOT_DIR}
 # mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf}
 # mkdir -p ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
 # mkdir -p ${SYSROOT_DIR}/opt/vc/lib
 # mkdir -p ${SYSROOT_DIR}/{etc,bin}
-# EOF
+#
+# cp -r  ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
+# cp -r	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
+# cp -r	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
+# cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
+# cp  	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
+# cp -r	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
+# cp -r	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
+# cp -r	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
+# cp -r	${ROOTFS_DIR}/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
+# # cp -r	${ROOTFS_DIR}/lib/* ${SYSROOT_DIR}/lib
 
 on_chroot << EOF
 /etc/init.d/fake-hwclock stop
@@ -75,36 +82,6 @@ printf "Uname string: %s\n" "$uname" >> "$INFO_FILE"
 
 printf "\nPackages:\n">> "$INFO_FILE"
 dpkg -l --root "$ROOTFS_DIR" >> "$INFO_FILE"
-# on_chroot << EOF
-# # rsync -rzLR --safe-links --exclude '${ROOTFS_DIR}/usr/bin/X11/X11' \
-# # ${ROOTFS_DIR}/etc \
-# # ${ROOTFS_DIR}/usr/lib \
-# # ${ROOTFS_DIR}/usr/include \
-# # ${ROOTFS_DIR}/usr/bin \
-# # ${ROOTFS_DIR}/usr/local/lib \
-# # ${ROOTFS_DIR}/opt/vc \
-# # # ${ROOTFS_DIR}/etc \
-# # ${ROOTFS_DIR}/bin \
-# # ${ROOTFS_DIR}/lib \
-# # ${SYSROOT_DIR}/
-#
-#
-# # mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf}
-# # mkdir -p ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
-# # mkdir -p ${SYSROOT_DIR}/opt/vc/lib
-# # mkdir -p ${SYSROOT_DIR}/{etc,bin}
-#
-# cp -aR  ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
-# cp -aR	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
-# cp -aR	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
-# cp -a 	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
-# cp -a 	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
-# cp -aR	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
-# cp -aR	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
-# cp -aR	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
-# cp -aR	${ROOTFS_DIR}/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
-# # cp -aR	${ROOTFS_DIR}/lib/* ${SYSROOT_DIR}/lib
-# EOF
 
 ROOT_DEV=$(mount | grep "${ROOTFS_DIR} " | cut -f1 -d' ')
 
@@ -119,7 +96,7 @@ rm -f ${DEPLOY_DIR}/image_${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.zip
 
 pushd ${STAGE_WORK_DIR} > /dev/null
 zip ${DEPLOY_DIR}/image_${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.zip $(basename ${IMG_FILE})
-zip -r ${DEPLOY_DIR}/sysroot.zip $(basename ${SYSROOT_DIR})
+# zip -r ${DEPLOY_DIR}/sysroot.zip $(basename ${SYSROOT_DIR})
 popd > /dev/null
 
 cp "$INFO_FILE" "$DEPLOY_DIR"
