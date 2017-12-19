@@ -12,8 +12,8 @@ mkdir -p ${SYSROOT_DIR}/{etc,bin}
 cp -r ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
 cp -r	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
 cp -r	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
-cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
-cp  	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
+# cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
+# cp  	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
 cp -r	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
 cp -r	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
 cp -r	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
