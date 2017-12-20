@@ -5,7 +5,7 @@ INFO_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.info"
 SYSROOT_DIR="${STAGE_WORK_DIR}/sysroot"
 
 mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf,lib/llvm-3.9}
-mkdir -p ${SYSROOT_DIR}/usr/lib/llvm-3.9/{bin,include/lib}
+mkdir -p ${SYSROOT_DIR}/usr/lib/llvm-3.9/{bin,include,lib}
 mkdir -p ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
 mkdir -p ${SYSROOT_DIR}/opt/vc/{include,lib}
 mkdir -p ${SYSROOT_DIR}/{etc,bin}
