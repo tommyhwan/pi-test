@@ -4,18 +4,23 @@ IMG_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.img"
 INFO_FILE="${STAGE_WORK_DIR}/${IMG_DATE}-${IMG_NAME}${IMG_SUFFIX}.info"
 SYSROOT_DIR="${STAGE_WORK_DIR}/sysroot"
 
-mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf}
+mkdir -p ${SYSROOT_DIR}/usr/{bin/X11,include,local/lib,lib/arm-linux-gnueabihf,lib/llvm-3.9}
+mkdir -p ${SYSROOT_DIR}/usr/lib/llvm-3.9/{bin,include/lib}
 mkdir -p ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
-mkdir -p ${SYSROOT_DIR}/opt/vc/lib
+mkdir -p ${SYSROOT_DIR}/opt/vc/{include,lib}
 mkdir -p ${SYSROOT_DIR}/{etc,bin}
 
 cp -r ${ROOTFS_DIR}/usr/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf
+cp -r ${ROOTFS_DIR}/usr/lib/llvm-3.9/bin/* ${SYSROOT_DIR}/usr/lib/llvm-3.9/bin
+cp -r ${ROOTFS_DIR}/usr/lib/llvm-3.9/include/* ${SYSROOT_DIR}/usr/lib/llvm-3.9/include
+cp -r ${ROOTFS_DIR}/usr/lib/llvm-3.9/lib/* ${SYSROOT_DIR}/usr/lib/llvm-3.9/lib
 cp -r	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
 cp -r	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
 # cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
 # cp  	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
 cp -r	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
 cp -r	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
+cp -r	${ROOTFS_DIR}/opt/vc/include/* ${SYSROOT_DIR}/opt/vc/include
 cp -r	${ROOTFS_DIR}/opt/vc/lib/* ${SYSROOT_DIR}/opt/vc/lib
 # cp -r	${ROOTFS_DIR}/lib/arm-linux-gnueabihf/* ${SYSROOT_DIR}/lib/arm-linux-gnueabihf
 cp -r	${ROOTFS_DIR}/lib/* ${SYSROOT_DIR}/lib
