@@ -16,7 +16,7 @@ cp -r ${ROOTFS_DIR}/usr/lib/llvm-3.9/include/* ${SYSROOT_DIR}/usr/lib/llvm-3.9/i
 cp -r ${ROOTFS_DIR}/usr/lib/llvm-3.9/lib/* ${SYSROOT_DIR}/usr/lib/llvm-3.9/lib
 cp -r	${ROOTFS_DIR}/etc/* ${SYSROOT_DIR}/etc
 cp -r	${ROOTFS_DIR}/bin/* ${SYSROOT_DIR}/bin
-# cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
+cp  	${ROOTFS_DIR}/usr/bin/* ${SYSROOT_DIR}/usr/bin/
 # cp  	${ROOTFS_DIR}/usr/bin/X11/* ${SYSROOT_DIR}/usr/bin/X11
 cp -r	${ROOTFS_DIR}/usr/include/* ${SYSROOT_DIR}/usr/include
 cp -r	${ROOTFS_DIR}/usr/local/lib/* ${SYSROOT_DIR}/usr/local/lib
