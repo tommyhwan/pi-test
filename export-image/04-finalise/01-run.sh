@@ -7,8 +7,8 @@ SYSROOT_DIR="${STAGE_WORK_DIR}/sysroot"
 mkdir -p ${SYSROOT_DIR}
 
 pushd ${ROOTFS_DIR} > /dev/null
-tar -cpvzf ${SYSROOT_DIR}/sysroot.tar.gz usr/lib/arm-linux-gnueabihf usr/lib/llvm-3.9/include usr/lib/llvm-3.9/lib usr/lib/llvm-3.9/bin bin lib usr/include usr/local/lib opt/vc/include opt/vc/lib
-tar -rpvzf ${SYSROOT_DIR}/sysroot.tar.gz usr/bin
+tar -cpvzf ${SYSROOT_DIR}/sysroot.tar.gz usr/lib/arm-linux-gnueabihf usr/lib/llvm-3.9/include usr/lib/llvm-3.9/lib usr/lib/llvm-3.9/bin bin lib usr/include usr/local/lib opt/vc/include opt/vc/lib usr/bin
+# tar -rpvzf ${SYSROOT_DIR}/sysroot.tar.gz usr/bin
 popd > /dev/null
 
 on_chroot << EOF
